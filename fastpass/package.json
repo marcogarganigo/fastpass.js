@@ -1,0 +1,28 @@
+{
+  "name": "fastpass.js",
+  "version": "0.0.2",
+  "description": "Custom password generator",
+  "main": "fastpass.js",
+  "scripts": {
+    "test": "fastpass"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcogarganigo/fastpass.js.git"
+  },
+  "keywords": [
+    "password",
+    "generator",
+    "password generator",
+    "fastpass",
+    "custom",
+    "random password generator",
+    "custom password generator"
+  ],
+  "author": "mg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcogarganigo/fastpass.js/issues"
+  },
+  "homepage": "https://github.com/marcogarganigo/fastpass.js#readme"
+}
