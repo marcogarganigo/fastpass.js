@@ -1,4 +1,3 @@
-// Password Generator Library
 var PasswordGenerator = (function () {
 
     // Private variables and methods
@@ -10,7 +9,7 @@ var PasswordGenerator = (function () {
     };
 
     function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+        return window.crypto.getRandomValues(new Uint32Array(1))[0] % (max - min + 1) + min;
     }
 
     function generateRandomString(length, charset) {
