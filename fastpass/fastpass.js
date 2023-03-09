@@ -1,4 +1,4 @@
-var PasswordGenerator = (function () {
+var fastpass = (function () {
 
     // Private variables and methods
     var charsets = {
@@ -9,7 +9,9 @@ var PasswordGenerator = (function () {
     };
 
     function getRandomInt(min, max) {
-        return window.crypto.getRandomValues(new Uint32Array(1))[0] % (max - min + 1) + min;
+        var array = new Uint32Array(1);
+        crypto.getRandomValues(array);
+        return array[0] % (max - min + 1) + min;
     }
 
     function generateRandomString(length, charset) {
@@ -26,23 +28,29 @@ var PasswordGenerator = (function () {
         generate: function (options) {
             options = options || {};
             var length = options.length || 12;
-            var useLowercase = options.useLowercase !== undefined ? options.useLowercase : true;
-            var useUppercase = options.useUppercase !== undefined ? options.useUppercase : true;
-            var useNumbers = options.useNumbers !== undefined ? options.useNumbers : true;
-            var useSymbols = options.useSymbols !== undefined ? options.useSymbols : false;
+            var charsetsToUse = options.charsets || ['lowercase', 'uppercase', 'numbers'];
+            var excludeSimilar = options.excludeSimilar || false;
+            var excludeAmbiguous = options.excludeAmbiguous || false;
+
+            // Make sure at least one character set is selected
+            if (charsetsToUse.length === 0) {
+                throw new Error('At least one character set must be selected.');
+            }
 
             var charset = '';
-            if (useLowercase) {
-                charset += charsets.lowercase;
+            for (var i = 0; i < charsetsToUse.length; i++) {
+                var setName = charsetsToUse[i];
+                if (charsets[setName]) {
+                    charset += charsets[setName];
+                }
             }
-            if (useUppercase) {
-                charset += charsets.uppercase;
+
+            if (excludeSimilar) {
+                charset = charset.replace(/[iloIO01]/g, '');
             }
-            if (useNumbers) {
-                charset += charsets.numbers;
-            }
-            if (useSymbols) {
-                charset += charsets.symbols;
+
+            if (excludeAmbiguous) {
+                charset = charset.replace(/[{}()\[\]\/\\~<>;:.,'"\?]/g, '');
             }
 
             return generateRandomString(length, charset);

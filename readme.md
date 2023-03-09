@@ -17,21 +17,24 @@ Alternatively, you can include the following script tag in your HTML file to loa
 
 ## Usage
 
-To generate a random password with FastPass.js, simply call the <b>PasswordGenerator.generate()</b> method with your desired options:
+To generate a random password with FastPass.js, simply call the <b>fastpass.generate()</b> method with your desired options:
 
 <pre>
-var defaultPassword = PasswordGenerator.generate();
+var defaultPassword = fastpassword.generate();
 </pre>
 
 <pre>
- var customPassword = PasswordGenerator.generate({
-        length: 15,
-        useNumbers: true,
-        useSymbols: true,
-        useLowercase: true,
-        useUppercase: true,
+var customPassword = fastpass.generate({
+        length: 16,
+        charsets: ['lowercase', 'uppercase', 'numbers', 'symbols'],
+        excludeSimilar: true,
+        excludeAmbiguous: true
     });
 </pre>
+
+<b>excludeSimilar</b> exclude characters that can be easily confused, such as <b>i l 1 O 0 etc.</b>
+
+<b>excludeAmbiguous</b> exclude characters that are ambiguous in certain fonts, such as <b>{} () [] \/ ~ <> ; : . , ' " ?</b>
 
 ## Contributions
 
