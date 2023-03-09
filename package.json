@@ -1,6 +1,6 @@
 {
   "name": "fastpass.js",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Custom password generator",
   "main": "fastpass.js",
   "scripts": {
