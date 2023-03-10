@@ -20,7 +20,7 @@ Alternatively, you can include the following script tag in your HTML file to loa
 To generate a random password with FastPass.js, simply call the <b>fastpass.generate()</b> method with your desired options:
 
 <pre>
-var defaultPassword = fastpassword.generate();
+var defaultPassword = fastpass.generate();
 </pre>
 
 <pre>
